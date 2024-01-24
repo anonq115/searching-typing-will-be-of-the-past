@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Stripe Interactive Help</title>
+    <!-- Add CSS for styling -->
+    <style>
+        #signInButton {
+            position: fixed;
+            left: 10px;
+            bottom: 10px;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+
+    <h1>Welcome to Stripe</h1>
+    <p>Select a question below:</p>
+
+    <button onclick="getAnswer('security')">How can I ensure a secure payment process?</button>
+    <button onclick="getAnswer('payment')">What payment methods are accepted?</button>
+    <button onclick="getAnswer('pricing')">Tell me more about Stripe's pricing.</button>
+    <button onclick="getAnswer('integration')">How do I integrate Stripe with my website?</button>
+    <button onclick="getAnswer('account')">What should I do if I encounter account issues?</button>
+
+    <div id="response"></div>
+
+    <button id="signInButton">Sign In</button>
+
+    <script>
+        function getAnswer(topic) {
+            var response = "";
+            var followUp = "";
+
+            switch(topic) {
+                case "security":
+                    response = "Ensuring a secure payment process is our top priority. Stripe uses best-in-class security tools and practices. ";
+                    followUp = "<button onclick=\"followUp('securityInfo')\">Tell me more about security measures</button>";
+                    break;
+                case "payment":
+                    response = "Stripe supports various payment methods including credit cards, Apple Pay, and Google Pay. ";
+                    followUp = "<button onclick=\"followUp('paymentList')\">See the full list of supported methods</button>";
+                    break;
+                case "pricing":
+                    response = "Stripe's pricing is transparent and straightforward. ";
+                    followUp = "<button onclick=\"followUp('pricingDetails')\">Learn more about our pricing structure</button>";
+                    break;
+                case "integration":
+                    response = "You can integrate Stripe by using our APIs. ";
+                    followUp = "<button onclick=\"followUp('apiGuide')\">Get a guide on API integration</button>";
+                    break;
+                case "account":
+                    response = "If you encounter any account issues, our support team is here to help. ";
+                    followUp = "<button onclick=\"followUp('contactSupport')\">Contact our support team</button>";
+                    break;
+                default:
+                    response = "I'm not sure how to answer that. Can you select a different question?";
+            }
+
+            document.getElementById('response').innerHTML = response + " " + followUp;
+        }
+
+        function followUp(action) {
+            var followUpResponse = "";
+            switch(action) {
+                case "securityInfo":
+                    followUpResponse = "Stripe employs best-in-class security tools and practices to ensure your payments are secure. ";
+                    followUpResponse += "You can learn more about our security measures on our [Security Info Page].";
+                    break;
+                case "paymentList":
+                    followUpResponse = "Stripe accepts a wide range of payment methods, including credit cards, Apple Pay, Google Pay, and more. ";
+                    followUpResponse += "For a full list of supported payment methods, visit our [Payment Methods Page].";
+                    break;
+                case "pricingDetails":
+                    followUpResponse = "Stripe's pricing is transparent and competitive. ";
+                    followUpResponse += "You can find detailed information about our pricing structure on our [Pricing Details Page].";
+                    break;
+                case "apiGuide":
+                    followUpResponse = "Integrating Stripe with your website is easy with our comprehensive API documentation. ";
+                    followUpResponse += "You can access a step-by-step guide on API integration [here].";
+                    break;
+                case "contactSupport":
+                    followUpResponse = "If you're facing any issues, our support team is ready to assist you. ";
+                    followUpResponse += "You can contact our support team through [this link].";
+                    break;
+            }
+            document.getElementById('response').innerHTML = followUpResponse;
+        }
+    </script>
+
+</body>
+</html>
